@@ -21,6 +21,25 @@ pipeline {
             }
         }
         
-    }
-    
+   stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('push image') {
+            steps{
+                sh 'docker push madhurisai12/docker:latest'
+               }
+          }
+   stage('Deploy') {
+            steps{
+                   sh 'docker run -itd --name dockerhub -p 8099:8099 madhurisai12/docker:latest'
+                 }
+          }   
 }
+       post {
+            always {
+               sh 'docker logout'
+            }
+        }
+    }
