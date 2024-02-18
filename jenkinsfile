@@ -16,7 +16,7 @@ pipeline {
         }
      stage('Build docker image') {
             steps {  
-                sh 'docker build -t myimg1 .'
+                sh 'docker build -t mydocker .'
                 sh 'docker tag mydocker:latest madhurisai12/docker:latest'
             }
         }
