@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: insureme
+  name: health-care
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: insureme
+      app: health-care
   template:
     metadata:
       labels:
-        app: insureme
+        app: health-care
     spec:
       containers:
-        - name: insurance
-          image: balu777kb/springboot-demo:1
+        - name: health-care
+          image: madhurisai12/health-care:1
           ports:
             - containerPort: 8081
           env:
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: insureme
+  name: health-care
 spec:
   type: NodePort
   ports:
